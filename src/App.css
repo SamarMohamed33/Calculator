@@ -55,18 +55,11 @@ section {
 .equal {
   grid-column: 4/5;
   grid-row: 4/8;
-  /* background-color: rgb(0, 18, 25);
-  background-color: #102442;
-  background-color: #090d13; */
   background-color: #00132f;
   color: white;
   justify-content: center;
 }
 .operator {
-  /* background-color: #ff006e;
-  background-color: #bb3e03;
-  background-color: rgb(0, 18, 25);
-  background-color: #102442; */
   background-color: #00132f;
   color: white;
   justify-content: center;

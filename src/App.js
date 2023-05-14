@@ -7,38 +7,43 @@ function App() {
 
   const operators = ["+", "-", "/", "*"];
 
-  const updateCalc = (num) => {
+  const updateNumber = (num) => {
+    // Make a new calculation, delete the previous one, and set the number with the new number entered
     if (calc.slice(-1) === "=") {
       setNumber(num);
       setCalc("");
       return;
     }
+    // when calculation is empty and number is 0 
     if (number.slice(0) === "0") {
       setNumber(num);
       return;
     }
+    // when number has value, concatenate the two numberes together
     setNumber(number + num);
   };
 
-  const calculation = (operator) => {
+  const updateCalculation = (operator) => {
     if (calc === "" && operator.includes(number.slice(-1))) {
       return;
     }
-
+    // If the operator is changed after clicking the operator
     if (calc !== "" && number === "" && operators.includes(calc.slice(-1))) {
-      if (operators.includes(calc.slice(-1)) !== operator) {
+      if (operators.includes(calc.slice(-1)) && calc.slice(-1)!==operator) {
         const replaced = calc.replace(/.$/, operator);
-        console.log(replaced);
+        console.log("replaced "+replaced);
         setCalc(replaced);
       }
       return;
     }
+    // Do calculations on the result
     if (calc.includes("=")) {
       setCalc(number + operator);
       setNumber("");
 
       return;
     }
+    // The everything went okay
     setCalc(calc + number + operator);
     setNumber("");
   };
@@ -65,46 +70,46 @@ function App() {
         <div className="container">
           <div className="display">{calc}</div>
           <div className="result">{number || "0"}</div>
-          <div className="operator" onClick={() => calculation("+")}>
+          <div className="operator" onClick={() => updateCalculation("+")}>
             +
           </div>
-          <div className="operator" onClick={() => calculation("-")}>
+          <div className="operator" onClick={() => updateCalculation("-")}>
             -
           </div>
-          <div className="operator" onClick={() => calculation("*")}>
+          <div className="operator" onClick={() => updateCalculation("*")}>
             *
           </div>
 
-          <div className="operator" onClick={() => calculation("/")}>
+          <div className="operator" onClick={() => updateCalculation("/")}>
             /
           </div>
-          <div className="number" onClick={() => updateCalc("7")}>
+          <div className="number" onClick={() => updateNumber("7")}>
             7
           </div>
-          <div className="number" onClick={() => updateCalc("8")}>
+          <div className="number" onClick={() => updateNumber("8")}>
             8
           </div>
-          <div className="number" onClick={() => updateCalc("9")}>
+          <div className="number" onClick={() => updateNumber("9")}>
             9
           </div>
 
-          <div className="number" onClick={() => updateCalc("4")}>
+          <div className="number" onClick={() => updateNumber("4")}>
             4
           </div>
-          <div className="number" onClick={() => updateCalc("5")}>
+          <div className="number" onClick={() => updateNumber("5")}>
             5
           </div>
-          <div className="number" onClick={() => updateCalc("6")}>
+          <div className="number" onClick={() => updateNumber("6")}>
             6
           </div>
 
-          <div className="number" onClick={() => updateCalc("1")}>
+          <div className="number" onClick={() => updateNumber("1")}>
             1
           </div>
-          <div className="number" onClick={() => updateCalc("2")}>
+          <div className="number" onClick={() => updateNumber("2")}>
             2
           </div>
-          <div className="number" onClick={() => updateCalc("3")}>
+          <div className="number" onClick={() => updateNumber("3")}>
             3
           </div>
           <div
@@ -117,7 +122,7 @@ function App() {
           <div
             className="number"
             style={{ borderRadius: "0 0 0 15px " }}
-            onClick={() => updateCalc("0")}
+            onClick={() => updateNumber("0")}
           >
             0
           </div>
@@ -125,9 +130,9 @@ function App() {
             className="dot"
             onClick={() => {
               if (!number) {
-                updateCalc("0.");
+                updateNumber("0.");
               } else {
-                updateCalc(".");
+                updateNumber(".");
               }
             }}
           >
